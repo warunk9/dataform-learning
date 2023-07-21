@@ -1,0 +1,6 @@
+{
+  "name": "dataform-learning-demo",
+  "dependencies": {
+    "@dataform/core": "2.4.2"
+  }
+}

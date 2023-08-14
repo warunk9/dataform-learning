@@ -4,6 +4,7 @@
   "silver_Schema": "df_ecom_sl",
   "gold_Schema": "df_ecom_gd",
   "warehouse": "bigquery",
+  "silverDatabase": "gcp-sandbox-3-393305",
   "defaultDatabase": "gcp-sandbox-3-393305",
   "defaultLocation": "us-central1"
 }

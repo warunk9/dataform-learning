@@ -1,0 +1,26 @@
+config {
+  type: "table",
+  schema: dataform.projectConfig.vars.silver_Schema,
+  tags: ["distribution_centre" ,"silver"],
+  description: "Distribution center name and location",
+  bigquery: {
+     labels: {"type":"dimension"}
+  },
+  columns: {
+    id: "unique key for Distribution center",
+    name: "name of Distribution center",
+    latitude: "latitude location",
+    longitude: "longitude location"
+  },
+  assertions: {
+    uniqueKey: ["id"],
+    nonNull: ["name", "latitude","longitude"]
+  }
+}
+select
+  id,
+  nullif(trim(name),'') as name,
+  round(latitude,2) as latitude,
+  round(longitude,2) as longitude
+  from
+  ${ref("gcp-sandbox-3-393305","df_ecom_bz","stg_distribution_centre")}

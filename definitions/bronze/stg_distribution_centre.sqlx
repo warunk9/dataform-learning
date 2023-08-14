@@ -1,8 +1,11 @@
+-- description not working
+
 config {
   hasOutput: true,
   type: "operations",
-  schema: dataform.projectConfig.vars.defaultSchema,
-  tags: ["distribution centre" ,"bronze"]
+  schema: dataform.projectConfig.vars.bronze_Schema,
+  description: "Distribution center name and location",
+  tags: ["distribution_centre" ,"bronze"]
 }
 LOAD DATA OVERWRITE ${ self() }
 (
@@ -16,5 +19,5 @@ FROM FILES (
   field_delimiter = ",",
   skip_leading_rows = 1,
   quote = "",
-  uris = ["gs://df_ecom_demo/raw_data/distribution centre/distribution centre_20230811.csv"]
+  uris = ["gs://df_ecom_demo/raw_data/distribution_centre/distribution_centers.csv"]
 );

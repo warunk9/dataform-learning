@@ -3,9 +3,12 @@ config {
   type: "operations",
   name: "stg_users",
   schema: dataform.projectConfig.vars.bronze_Schema,
+  description: "users table till 2021",
   tags: ["users" ,"bronze"]
 }
---id,first_name,last_name,email,age,gender,state,street_address,postal_code,city,country,latitude,longitude,traffic_source,created_at
+
+truncate table ${ self() } ;
+
 
 LOAD DATA OVERWRITE ${ self() }
 (

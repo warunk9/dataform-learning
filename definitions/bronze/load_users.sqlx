@@ -1,0 +1,34 @@
+config {
+  hasOutput: true,
+  type: "operations",
+  name: "stg_users",
+  schema: dataform.projectConfig.vars.bronze_Schema,
+  tags: ["users" ,"bronze"]
+}
+--id,first_name,last_name,email,age,gender,state,street_address,postal_code,city,country,latitude,longitude,traffic_source,created_at
+
+LOAD DATA OVERWRITE ${ self() }
+(
+id	INTEGER	NOT NULL,		
+first_name	STRING	,				
+last_name	STRING	,			
+email	STRING	,		
+age	INTEGER	,			
+gender	STRING	,				
+state	STRING	,			
+street_address	STRING	,				
+postal_code	STRING	,		
+city	STRING	,	
+country	STRING	,				
+latitude	FLOAT64	,				
+longitude	FLOAT64	,				
+traffic_source	STRING	,				
+created_at	TIMESTAMP	
+)
+FROM FILES (
+  format = "CSV",
+  field_delimiter = ",",
+  skip_leading_rows = 1,
+  quote = "",
+  uris = ["gs://df_ecom_demo/raw_data/users/users_till_2021.csv"]
+);

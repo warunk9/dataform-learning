@@ -1,9 +1,12 @@
 {
   "defaultSchema": "df_ecom_bz",
   "bronze_Schema": "df_ecom_bz",
-  "silver_Schema": "df_ecom_sl",
   "gold_Schema": "df_ecom_gd",
   "warehouse": "bigquery",
+  "vars": {
+  "silver_Schema": "df_ecom_sl"
+          },
+  "assertionSchema": "df_ecom_assert",
   "silverDatabase": "gcp-sandbox-3-393305",
   "defaultDatabase": "gcp-sandbox-3-393305",
   "defaultLocation": "us-central1"

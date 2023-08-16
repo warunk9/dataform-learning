@@ -16,11 +16,13 @@ publish("products_sl",
     nullif(trim(department),'') as department,
     nullif(trim(sku),'') as sku,
     distribution_center_id
-    FROM ${ctx.ref("products")}`);
+    FROM ${ctx.ref("stg_products")}`)
+    .preOps(ctx => `truncate table ${ctx.self()}`);
+
+
 
 assert("df_ecomm_products_sl_assertions_notnull")
-.query(ctx => `SELECT id FROM  ${ctx.ref("products")} WHERE id IS NULL`);
-
+.query(ctx => `SELECT id FROM  ${ctx.ref("stg_products")} WHERE id IS NULL`);
 
 
 

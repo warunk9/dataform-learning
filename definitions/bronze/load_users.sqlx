@@ -7,8 +7,6 @@ config {
   tags: ["users" ,"bronze"]
 }
 
-truncate table ${ self() } ;
-
 
 LOAD DATA OVERWRITE ${ self() }
 (

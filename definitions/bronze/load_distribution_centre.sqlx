@@ -3,6 +3,7 @@
 config {
   hasOutput: true,
   type: "operations",
+  name: "stg_distribution_centre",
   schema: dataform.projectConfig.vars.bronze_Schema,
   description: "Distribution center name and location",
   tags: ["distribution_centre" ,"bronze"]

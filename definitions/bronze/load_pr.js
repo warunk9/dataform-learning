@@ -17,4 +17,4 @@ FROM FILES (
   quote = "",
   uris = ["gs://df_ecom_demo/raw_data/products/products_20230811.csv"])
   `) 
-  .type("table") ;
+  .type("table")

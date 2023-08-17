@@ -1,0 +1,9 @@
+config {
+  type: "assertion",
+  tags: ["users" ,"silver"]
+
+}
+
+
+  ${check_func.emailsyntax(ref("stg_users"),"email")} 
+  

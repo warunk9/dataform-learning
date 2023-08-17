@@ -5,5 +5,5 @@ config {
 }
 
 
-  ${check_func.emailsyntax(ref("stg_users"),"email")} 
+  ${assert_utils.emailsyntax(ref("stg_users"),"email")} 
   

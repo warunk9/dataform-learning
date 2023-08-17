@@ -1,8 +1,8 @@
   function emailsyntax(table, cl_name) {
-    return `
-        select
+    return ` SELECT
         ${cl_name}
-        from ${table} where ${cl_name} like "%@%.%"`;
+        from ${table} where ${cl_name} not like "%@%.%"`;
   }
 
 module.exports = { emailsyntax };
+

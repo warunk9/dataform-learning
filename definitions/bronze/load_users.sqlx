@@ -10,21 +10,21 @@ config {
 
 LOAD DATA OVERWRITE ${ self() }
 (
-id	INTEGER	NOT NULL,		
+id	STRING	NOT NULL,		
 first_name	STRING	,				
 last_name	STRING	,			
 email	STRING	,		
-age	INTEGER	,			
+age	STRING	,			
 gender	STRING	,				
 state	STRING	,			
 street_address	STRING	,				
 postal_code	STRING	,		
 city	STRING	,	
 country	STRING	,				
-latitude	FLOAT64	,				
-longitude	FLOAT64	,				
+latitude	STRING	,				
+longitude	STRING	,				
 traffic_source	STRING	,				
-created_at	TIMESTAMP	
+created_at	STRING	
 )
 FROM FILES (
   format = "CSV",

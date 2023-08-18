@@ -9,12 +9,10 @@ id
  from ${ref("stg_users")} 
  where id is null
 
- UNION ALL 
 
-SELECT id
-FROM (
-    SELECT id, SUM(1) AS count
-    FROM ${ref("stg_users")}
-    GROUP BY 1
-)
-WHERE count > 1
+UNION ALL
+
+  ${assert_utils.duplicate_on_id(ref("stg_users"),"id")} 
+
+
+ 

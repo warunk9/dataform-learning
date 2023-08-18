@@ -8,7 +8,7 @@ config {
   bigquery: {
      labels: {"type":"dimension"}
   },
-  dependencies: ["check_users","df_ecomm_users_sl_assertions_email","user_email"]
+  dependencies: ["check_users","df_ecomm_users_sl_assertions_email","user_email","df_ecomm_users_sl_assertions_age"]
 }
 
  --  nullif(trim(name),'') as name,
@@ -18,8 +18,8 @@ config {
 
 select
 id	,	
-nullif(trim(first_name),'') as first_name,			
-nullif(trim(last_name),'') as last_name,	
+${utils.null_if_string("first_name")} ,
+${utils.null_if_string("last_name")} ,
 email,		
 age	,			
 gender,				

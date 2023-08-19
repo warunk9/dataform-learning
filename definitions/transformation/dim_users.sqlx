@@ -7,8 +7,8 @@ config {
   description: "users details",
   bigquery: {
      labels: {"type":"dimension"}
-  },
-  dependencies: ["check_users","df_ecomm_users_sl_assertions_email","user_email","df_ecomm_users_sl_assertions_age"]
+  }
+//  dependencies: ["check_users","df_ecomm_users_sl_assertions_email","user_email","df_ecomm_users_sl_assertions_age"]
 }
 
  --  nullif(trim(name),'') as name,

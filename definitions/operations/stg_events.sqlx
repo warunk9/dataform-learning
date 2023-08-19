@@ -2,6 +2,7 @@ config {
   type: "operations",  
   hasOutput: true,  
   schema: dataform.projectConfig.defaultSchema,
+  name: "stg_events",
   tags: ["events" ,"bronze"]
 }
 LOAD DATA INTO ${ self() }

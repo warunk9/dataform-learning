@@ -1,17 +1,20 @@
 config { 
     type: "incremental",
-    schema: dataform.projectConfig.vars.silver_Schema,
+    schema: dataform.projectConfig.vars.silverSchema,
+    name: "fact_events",
     tags: ["events" ,"silver"],
+    description: "Event Fact Table",
     columns: {
       ip_address: {
         bigqueryPolicyTags: ["projects/gcp-sandbox-3-393305/locations/us-central1/taxonomies/6103638487414924910/policyTags/6256338910151106080"]
       }
     },
+    dependencies: ["events_nonNull_check","events_rowvalidations_check","events_uniqueKey_check"],
     assertions: {
     uniqueKey: ["id"],
     nonNull: ["session_id"],
     rowConditions: [
-      'ip_address is not null',
+      'sequence_number is not null',
       'traffic_source in ("Facebook", "Adwords", "Email", "Organic", "YouTube")'
     ]
     }   
@@ -20,7 +23,7 @@ SELECT id,
 userid,
 sequence_number,
 session_id,
-PARSE_DATETIME('%Y-%m-%d %H:%M:%E*S UTC', nullif(TRIM(created_at),'')) as created_at,
+${date_conversion.parse_date("created_at")} as created_at,
 ip_address,
 city,
 state,
@@ -30,4 +33,15 @@ traffic_source,
 uri,
 event_type FROM ${ref("stg_events")}
 
-${when(incremental(), `WHERE cast(substr(created_at, 1, 10) as date) > (SELECT MAX(EXTRACT(DATE FROM created_at)) FROM ${self()})`) }
+${when(incremental(), `WHERE cast(substr(created_at, 1, 10) as date) > (SELECT IFNULL(MAX(EXTRACT(DATE FROM created_at)), CAST('${constants.DEFAULT_DATE}' as DATE)) FROM ${self()})`)}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+config {
+  type: "assertion",
+  tags: ["events" ,"silver"]
+}
+select 
+id from ${ref("stg_events")} 
+where traffic_source not in ("Facebook", "Adwords", "Email", "Organic", "YouTube")

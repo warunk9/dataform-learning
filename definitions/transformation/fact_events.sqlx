@@ -9,7 +9,7 @@ config {
         bigqueryPolicyTags: ["projects/gcp-sandbox-3-393305/locations/us-central1/taxonomies/6103638487414924910/policyTags/6256338910151106080"]
       }
     },
-    dependencies: ["events_nonNull_check","events_rowvalidations_check","events_uniqueKey_check"],
+    dependencies: ["events_nonnull_check","events_rowvalidations_check","events_uniquekey_check"],
     assertions: {
     uniqueKey: ["id"],
     nonNull: ["session_id"],

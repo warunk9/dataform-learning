@@ -1,0 +1,28 @@
+config {
+  type: "operations",  
+  hasOutput: true,  
+  schema: dataform.projectConfig.defaultSchema,
+  name: "stg_order_items",
+  tags: ["order_items" ,"bronze"]
+}
+LOAD DATA INTO ${ self() }
+(
+    id INTEGER NOT NULL OPTIONS (description = "Order Item Id"),
+    order_id INTEGER OPTIONS (description = "Order Id"),
+    user_id INTEGER OPTIONS (description = "User Id"),
+    product_id INTEGER OPTIONS (description = "Product Id"),
+    inventory_item_id INTEGER OPTIONS (description = "Inventory Item Id"),
+    status STRING OPTIONS (description = "Order Item Status"),
+    created_at STRING OPTIONS (description = "Order Item Creation Timestamp"),
+    shipped_at STRING OPTIONS (description = "Order Item Shipped Timestamp"),
+    delivered_at STRING OPTIONS (description = "Order Item Delivered Timestamp"),
+    returned_at STRING OPTIONS (description = "Order Item Returned Timestamp"),
+    sale_price STRING OPTIONS (description = "Order Item Sale Price")
+)
+FROM FILES (
+  format = "CSV",
+  field_delimiter = ",",
+  skip_leading_rows = 1,
+  quote = "",
+  uris = ["gs://df_ecom_demo/raw_data/order_items/*"]
+)

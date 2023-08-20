@@ -1,0 +1,7 @@
+config {
+  type: "assertion",
+  tags: ["order_items" ,"silver"]
+}
+select 
+id from ${ref("stg_order_items")} 
+where status not in ("Shipped", "Complete", "Cancelled", "Processing", "Returned")

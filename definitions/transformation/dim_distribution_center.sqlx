@@ -17,7 +17,7 @@ config {
 }
 select
   id,
-  nullif(trim(name),'') as name,
+  ${utils.null_if_string("name")} ,
   round(latitude,2) as latitude,
   round(longitude,2) as longitude
   from

@@ -11,12 +11,12 @@ publish("products_sl",
     .query(ctx => `SELECT 
     id,
     round(cost,3) as cost,
-    nullif(trim(category),'') as category,
-    nullif(trim(name),'') as name,
-    nullif(trim(brand),'') as brand,
+    ${utils.null_if_string("category")} , 
+    ${utils.null_if_string("name")} ,
+    ${utils.null_if_string("brand")} ,
     round(retail_price,3) as retail_price,
-    nullif(trim(department),'') as department,
-    nullif(trim(sku),'') as sku,
+    ${utils.null_if_string("department")} ,
+    ${utils.null_if_string("sku")} ,
     distribution_center_id
     FROM ${ctx.ref("stg_products")}`)
 

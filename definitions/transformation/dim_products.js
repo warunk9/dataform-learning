@@ -17,7 +17,6 @@ publish("products_sl",
     nullif(trim(sku),'') as sku,
     distribution_center_id
     FROM ${ctx.ref("stg_products")}`)
-    .preOps(ctx => `truncate table ${ctx.self()}`);
 
 
 

@@ -12,14 +12,12 @@ config {
     latitude: "latitude location",
     longitude: "longitude location"
   },
-  assertions: {
-    uniqueKey: ["id"],
-    nonNull: ["name", "latitude","longitude"]
-  }
+  dependencies: ["assert_dc_nonnull","assert_dc_id_nonnull",
+                  "assert_dc_uniquekey"]
 }
 select
   id,
-  nullif(trim(name),'') as name,
+  ${utils.null_if_string("name")} ,
   round(latitude,2) as latitude,
   round(longitude,2) as longitude
   from

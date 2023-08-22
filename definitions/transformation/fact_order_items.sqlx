@@ -5,14 +5,7 @@ config {
     name: "fact_order_items",
     tags: ["order_items" ,"silver"],
     description: "Order Items Fact Table",
-    dependencies: ["order_items_nonnull_check","order_items_rowvalidations_check","order_items_uniquekey_check"],
-    assertions: {
-    uniqueKey: ["id"],
-    nonNull: ["inventory_item_id", "user_id", "product_id"],
-    rowConditions: [
-      'status in ("Shipped", "Complete", "Cancelled", "Processing", "Returned")'
-    ]
-    }   
+    dependencies: ["assert_order_items_uniquekey","assert_order_items_rowvalidation","assert_order_items_nonnull"] 
  } 
 SELECT 
 id,

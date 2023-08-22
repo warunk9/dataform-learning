@@ -1,6 +1,7 @@
 config {
   type: "assertion",
-  tags: ["events" ,"silver"]
+  tags: ["events" ,"silver"],
+  name: "assert_events_rowvalidation"
 }
 select 
 id from ${ref("stg_events")} 

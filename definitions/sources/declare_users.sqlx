@@ -1,7 +1,8 @@
 config {
  type: "declaration",
- database: "constants.PROJECT_ID",
+ database: constants.PROJECT_ID,
  schema: dataform.projectConfig.vars.bronze_Schema,
- name: "stg_user",
+ name: "stg_users",
  description: "users details"
 }
+

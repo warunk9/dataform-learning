@@ -9,15 +9,8 @@ config {
         bigqueryPolicyTags: ["projects/gcp-sandbox-3-393305/locations/us-central1/taxonomies/6103638487414924910/policyTags/6256338910151106080"]
       }
     },
-    dependencies: ["events_nonnull_check","events_rowvalidations_check","events_uniquekey_check"],
-    assertions: {
-    uniqueKey: ["id"],
-    nonNull: ["session_id"],
-    rowConditions: [
-      'sequence_number is not null',
-      'traffic_source in ("Facebook", "Adwords", "Email", "Organic", "YouTube")'
-    ]
-    }   
+    dependencies: ["assert_events_nonnull","assert_events_id_nonnull","assert_events_nonnull_sqlx",
+                  "assert_events_rowvalidation","assert_events_uniquekey"]
  } 
 SELECT id,
 userid,

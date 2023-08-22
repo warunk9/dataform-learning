@@ -1,11 +1,9 @@
 config {
   type: "assertion",
-  tags: ["users" ,"silver"]
+  tags: ["users" ,"silver"],
+  name: "assert_users_uniquekey"
 }
-select 
-id from ${ref("stg_users")} 
-where id is null
-UNION ALL
+
 ${assert_utils.duplicate_on_id(ref("stg_users"),"id")} 
 
 

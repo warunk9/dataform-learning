@@ -1,6 +1,8 @@
 config {
   type: "assertion",
-  tags: ["order_items" ,"silver"]
+  tags: ["order_items" ,"silver"],
+  name: "assert_order_items_uniquekey"
+
 }
 select 
 id from ${ref("stg_order_items")}

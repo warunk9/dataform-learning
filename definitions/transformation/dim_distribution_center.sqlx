@@ -12,10 +12,8 @@ config {
     latitude: "latitude location",
     longitude: "longitude location"
   },
-  assertions: {
-    uniqueKey: ["id"],
-    nonNull: ["name", "latitude","longitude"]
-  }
+  dependencies: ["assert_dc_nonnull","assert_dc_id_nonnull",
+                  "assert_dc_uniquekey"]
 }
 select
   id,

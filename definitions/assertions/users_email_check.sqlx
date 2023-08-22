@@ -1,9 +1,0 @@
-config {
-  type: "assertion",
-  tags: ["users" ,"silver"]
-
-}
-
-
-  ${assert_utils.emailsyntax(ref("stg_users"),"email")} 
-  

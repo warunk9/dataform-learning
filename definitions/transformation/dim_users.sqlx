@@ -7,13 +7,11 @@ config {
   description: "users details",
   bigquery: {
      labels: {"type":"dimension"}
-  }
-//  dependencies: ["check_users","df_ecomm_users_sl_assertions_email","user_email","df_ecomm_users_sl_assertions_age"]
+  },
+  dependencies: ["assert_users_id_nonnull","assert_users_rowvalidation_email",
+                  "assert_users_uniquekey","assert_users_rowvalidation_age"]
 }
 
- --  nullif(trim(name),'') as name,
- -- round(latitude,2) as latitude,
- -- round(longitude,2) as longitude
 
 
 select

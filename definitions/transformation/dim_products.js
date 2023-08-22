@@ -4,7 +4,9 @@ publish("products_sl",
     database: dataform.projectConfig.vars.silverDatabase,
     schema: dataform.projectConfig.vars.silver_Schema,
     description: "Product Details"  ,
+    
     tags: ["products" ,"silver"],  
+    dependencies: ["assert_products_nonnull","assert_products_id_nonnull","assert_products_uniquekey","assert_products_id_nonnull_inline"]
     })
     .query(ctx => `SELECT 
     id,
@@ -20,7 +22,7 @@ publish("products_sl",
 
 
 
-assert("df_ecomm_products_sl_assertions_notnull")
+assert("assert_products_id_nonnull_inline")
 .query(ctx => `SELECT id FROM  ${ctx.ref("stg_products")} WHERE id IS NULL`);
 
 

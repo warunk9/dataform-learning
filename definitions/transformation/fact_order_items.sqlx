@@ -5,6 +5,9 @@ config {
     name: "fact_order_items",
     tags: ["order_items" ,"silver"],
     description: "Order Items Fact Table",
+    bigquery: {
+     labels: {"type":"fact"}
+  },
     dependencies: ["assert_order_items_uniquekey","assert_order_items_rowvalidation","assert_order_items_nonnull"] 
  } 
 SELECT 

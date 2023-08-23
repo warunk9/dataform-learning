@@ -10,3 +10,6 @@
    schema: dataform.projectConfig.vars.bronze_Schema,
    name: "stg_order_items",
  });
+
+
+ 

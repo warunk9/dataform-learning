@@ -4,7 +4,6 @@
       from ${table} where ${email_cl} not like "%@%.%"`;
   }
 
-
 function age_check(table, age_cl) {
     return ` SELECT
       ${age_cl}
@@ -12,13 +11,10 @@ function age_check(table, age_cl) {
   }
 
 function duplicate_on_id(table, id_cl) {
-    return ` SELECT ${id_cl}
-      FROM (
-      SELECT ${id_cl}, SUM(1) AS count
-      FROM ${table}
-      GROUP BY 1
-    )
-  WHERE count > 1`;
+  return `SELECT ${id_cl}
+    FROM ${table}
+    GROUP BY 1
+    HAVING COUNT(1) > 1`;
 }
 
 

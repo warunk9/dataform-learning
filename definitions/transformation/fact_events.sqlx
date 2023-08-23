@@ -9,6 +9,9 @@ config {
         bigqueryPolicyTags: ["projects/gcp-sandbox-3-393305/locations/us-central1/taxonomies/6103638487414924910/policyTags/6256338910151106080"]
       }
     },
+    bigquery: {
+     labels: {"type":"fact"}
+  },
     dependencies: ["assert_events_nonnull","assert_events_id_nonnull","assert_events_nonnull_sqlx",
                   "assert_events_rowvalidation","assert_events_uniquekey"]
  } 

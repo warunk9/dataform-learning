@@ -1,4 +1,4 @@
-publish("products_sl",
+publish("dim_products",
    {
     type: "table",
     database: dataform.projectConfig.vars.silverDatabase,

@@ -2,7 +2,7 @@ publish("dim_products",
    {
     type: "table",
     database: dataform.projectConfig.vars.silverDatabase,
-    schema: dataform.projectConfig.vars.silver_Schema,
+    schema: dataform.projectConfig.vars.silverSchema,
     description: "Product Details"  ,
     
     tags: ["products" ,"silver"],  

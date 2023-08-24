@@ -2,7 +2,7 @@
 config {
   type: "table",
   schema: dataform.projectConfig.vars.silver_Schema,
-  name: "dim_users",
+  name: "dim_users1",
   tags: ["users" ,"silver"],
   description: "users details",
   bigquery: {

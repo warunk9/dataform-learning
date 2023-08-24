@@ -8,7 +8,7 @@ const { updates, view } = scd("dim_users", {
   // A unique identifier for rows in the table.
   uniqueKey: "id",
   // A field that stores a timestamp or date of when the row was last changed.
-  timestamp: "updated_at",
+  timestamp: "PARSE_DATETIME('%Y-%m-%d %H:%M:%E*S UTC', nullif(TRIM(created_at),''))",
   // The source table to build slowly changing dimensions from.
   source: {
     schema: dataform.projectConfig.vars.bronze_Schema,
@@ -17,16 +17,18 @@ const { updates, view } = scd("dim_users", {
   // Any tags that will be added to actions.
   tags: ["scd","silver","users"],
   // Documentation of table columns
-  columns: {user_id: "User ID", some_field: "Data Field", updated_at: "Timestamp for updates"},
+  //columns: {user_id: "User ID", some_field: "Data Field", updated_at: "Timestamp for updates"},
   // Configuration parameters to apply to the incremental table that will be created.
-  incrementalConfig: {
-    bigquery: {
-      partitionBy: "updated_at",
-    },
-  },
+ // incrementalConfig: {
+ //   bigquery: {
+ //     partitionBy: "PARSE_DATETIME('%Y-%m-%d %H:%M:%E*S UTC', nullif(TRIM(created_at),''))",
+  //  },
+  //},
 });
 
 // Additional customization of the created models can be done by using the returned actions objects.
 updates.config({
+  schema: dataform.projectConfig.vars.silverSchema,
   description: "Updates table for SCD",
 });
+

@@ -1,0 +1,8 @@
+config {
+  type: "assertion",
+  tags: ["v_top5_products_by_dc" ,"gold"],
+  name: "assert_top5_products_by_dc_uniquekey"
+}
+select 
+id from ${ref("dim_products")}
+group by id having count(1) > 1

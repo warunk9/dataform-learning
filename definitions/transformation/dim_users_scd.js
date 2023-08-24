@@ -11,11 +11,12 @@ const { updates, view } = scd("dim_users", {
   timestamp: "PARSE_DATETIME('%Y-%m-%d %H:%M:%E*S UTC', nullif(TRIM(created_at),''))",
   // The source table to build slowly changing dimensions from.
   source: {
-    schema: dataform.projectConfig.vars.bronze_Schema,
+    schema: dataform.projectConfig.vars.bronzeSchema,
     name: "stg_users",
   },
   // Any tags that will be added to actions.
   tags: ["scd","silver","users"],
+  schema: dataform.projectConfig.vars.silverSchema,
   // Documentation of table columns
   //columns: {user_id: "User ID", some_field: "Data Field", updated_at: "Timestamp for updates"},
   // Configuration parameters to apply to the incremental table that will be created.

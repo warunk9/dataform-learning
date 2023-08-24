@@ -1,0 +1,32 @@
+config {
+  type: "view",
+  name: "v_top5_products_by_dc",
+  schema: dataform.projectConfig.vars.goldSchema,
+  tags: ["v_top5_products_by_dc" ,"gold"],
+  description: "Top 5 product sold in each distribution center",
+  bigquery: {
+     labels: {"type":"reporting"}
+  },
+  columns: {
+    product_id: "product unique id",
+    name: "name of the product",
+    distribution_center_id: "distribution center id",
+    product_sold_count: "product sold count at each distribution center"
+  },
+  dependencies: ["assert_top5_products_by_dc_uniquekey"]
+}
+with top_product_sold as (
+select 
+b.product_id,
+a.name,
+a.distribution_center_id,
+b.product_sold_count 
+from ${ref("dim_products")}  a
+inner join (select distinct product_id, count(*) as product_sold_count
+from ${ref("fact_order_items")} 
+where status not in ('Cancelled','Returned')
+group by product_id) b  on a.id = b.product_id)
+--fetch data from CTE
+Select tps.*,
+rank() over (partition by distribution_center_id order by product_sold_count desc) as tps_rank
+from top_product_sold tps QUALIFY tps_rank < 6

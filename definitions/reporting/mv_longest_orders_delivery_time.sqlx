@@ -1,13 +1,18 @@
 config {
   type: "view",
   materialized: true,
-  name: "longest_orders_delivery_time",
+  name: "mv_longest_orders_delivery_time",
   schema: dataform.projectConfig.vars.goldSchema,
   tags: ["longest_orders_delivery_time" ,"gold"],
   description: "longest time taken for orders to be delievered",
   bigquery: {
-     labels: {"type":"reporting"}
-  },
+       additionalOptions: {
+           refresh_interval_minutes: "30"
+       },
+       labels: {
+           "type": "reporting"
+       }
+   },
   columns: {
     order_id: "order unique id",
     shipped_at: "order shipped date",

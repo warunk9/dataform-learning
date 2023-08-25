@@ -1,17 +1,8 @@
-declare({
-   database: constants.PROJECT_ID,
-   schema: dataform.projectConfig.vars.bronze_Schema,
-   name: "stg_products",
- });
 
-declare({
-   database: constants.PROJECT_ID,
-   schema: dataform.projectConfig.vars.bronze_Schema,
-   name: "stg_order_items",
- });
+const table = ["stg_products","stg_order_items","stg_orders"]
 
-declare({
-   database: constants.PROJECT_ID,
-   schema: dataform.projectConfig.vars.bronze_Schema,
-   name: "stg_orders",
- });
+table.forEach(utils.declareFn)
+
+
+
+ /// function 

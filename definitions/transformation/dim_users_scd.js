@@ -16,20 +16,23 @@ const { updates, view } = scd("dim_users", {
   },
   // Any tags that will be added to actions.
   tags: ["scd","silver","users"],
-  schema: dataform.projectConfig.vars.silverSchema,
+  
   // Documentation of table columns
   //columns: {user_id: "User ID", some_field: "Data Field", updated_at: "Timestamp for updates"},
   // Configuration parameters to apply to the incremental table that will be created.
- // incrementalConfig: {
- //   bigquery: {
- //     partitionBy: "PARSE_DATETIME('%Y-%m-%d %H:%M:%E*S UTC', nullif(TRIM(created_at),''))",
-  //  },
-  //},
+  incrementalConfig: {
+    bigquery: {
+//    partitionBy: "PARSE_DATETIME('%Y-%m-%d %H:%M:%E*S UTC', nullif(TRIM(created_at),''))",
+     // schema: dataform.projectConfig.vars.silverSchema
+   },
+  }
 });
 
 // Additional customization of the created models can be done by using the returned actions objects.
 updates.config({
   schema: dataform.projectConfig.vars.silverSchema,
   description: "Updates table for SCD",
+  dependencies: ["assert_users_id_nonnull","assert_users_rowvalidation_email",
+                  "assert_users_uniquekey","assert_users_rowvalidation_age"]
 });
 

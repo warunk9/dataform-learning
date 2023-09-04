@@ -2,7 +2,7 @@ config {
   type: "table",
   schema: dataform.projectConfig.vars.silverSchema,
   tags: ["distribution_centre" ,"silver"],
-  description: "Distribution center name and location",
+  description: "Distribution center name and locations",
   bigquery: {
      labels: {"type":"dimension"}
   },

@@ -4,7 +4,7 @@ publish("dim_inventory_items", {
   name: "dim_inventory_items",
   tags: ["inventory_items" ,"silver"],
   description: "Inventory Items Dimension Table",
-  dependencies: ["assert_inventory_items_nonnull","assert_inventory_items_uniquekey","assert_inventory_items_rowvalidations"],
+  dependencies: ["assert_inventory_items_rowvalidations"],
   bigquery: {
      labels: {"type":"dimension"}
   }

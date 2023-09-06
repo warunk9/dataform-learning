@@ -25,4 +25,4 @@ CAST(sale_price as NUMERIC) as sale_price
 FROM ${ref("stg_order_items")}
 
 
-${when(incremental(), `WHERE cast(substr(created_at, 1, 10) as date) > (SELECT IFNULL(MAX(EXTRACT(DATE FROM created_at)), CAST('${constants.DEFAULT_DATE}' as DATE)) FROM ${self()})`)}
+${when(incremental(), `WHERE cast(substr(created_at, 1, 10) as date) > (SELECT IFNULL(MAX(created_at), CAST('${constants.DEFAULT_DATE}' as DATE)) FROM ${self()})`)}

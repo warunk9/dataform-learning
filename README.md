@@ -3,6 +3,9 @@
 #This is test commit by madhu
 
 
+
+
+
 --stg_events
 config {
   type: "operations",  

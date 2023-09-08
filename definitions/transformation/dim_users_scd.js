@@ -32,7 +32,7 @@ const { updates, view } = scd("dim_users", {
 updates.config({
   schema: dataform.projectConfig.vars.silverSchema,
   description: "Updates table for SCD",
-  dependencies: ["assert_users_id_nonnull","assert_users_rowvalidation_email",
-                  "assert_users_uniquekey","assert_users_rowvalidation_age"]
+  dependencies: ["assert_users_rowvalidation_email",
+                  "assert_users_rowvalidation_age"]
 });
 

@@ -1,0 +1,7 @@
+config {
+ type: "declaration",
+ database: constants.PROJECT_ID, 
+ schema: dataform.projectConfig.vars.bronze_Schema,
+ name: "stg_order_items",
+ description: "order_items details"
+}

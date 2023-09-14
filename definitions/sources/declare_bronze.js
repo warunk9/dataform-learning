@@ -1,5 +1,5 @@
 
-const table = ["stg_products","stg_order_items","stg_orders"]
+const table = ["stg_products","stg_orders"]
 
 table.forEach(utils.declareFn)
 

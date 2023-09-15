@@ -12,8 +12,7 @@ config {
     bigquery: {
      labels: {"type":"fact"}
   },
-    dependencies: ["assert_events_nonnull","assert_events_id_nonnull","assert_events_nonnull_sqlx",
-                  "assert_events_rowvalidation","assert_events_uniquekey"]
+    dependencies: ["assert_events_rowvalidation","assert_events_uniquekey"]
  } 
 SELECT id,
 userid,

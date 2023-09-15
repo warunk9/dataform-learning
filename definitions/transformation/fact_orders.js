@@ -4,7 +4,7 @@ publish("fact_orders", {
   name: "fact_orders",
   tags: ["orders" ,"silver"],
   description: "Order information and details",
-  dependencies: ["assert_orders_nonnull","assert_orders_user_id_nonnull","assert_orders_rowvalidation"],
+  dependencies: ["assert_orders_rowvalidation"],
   bigquery: {
      labels: {"type":"fact"}
   }

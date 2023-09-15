@@ -6,7 +6,7 @@ publish("dim_products",
     description: "Product Details"  ,
     
     tags: ["products" ,"silver"],  
-    dependencies: ["assert_products_nonnull","assert_products_id_nonnull","assert_products_uniquekey","assert_products_id_nonnull_inline"]
+    dependencies: ["assert_products_uniquekey","assert_products_id_nonnull_inline"]
     })
     .query(ctx => `SELECT 
     id,

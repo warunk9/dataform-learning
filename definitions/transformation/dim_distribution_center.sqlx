@@ -1,8 +1,8 @@
 config {
   type: "table",
-  schema: dataform.projectConfig.silver_Schema,
+  schema: dataform.projectConfig.vars.silverSchema,
   tags: ["distribution_centre" ,"silver"],
-  description: "Distribution center name and location",
+  description: "Distribution center name and locations",
   bigquery: {
      labels: {"type":"dimension"}
   },
@@ -12,14 +12,11 @@ config {
     latitude: "latitude location",
     longitude: "longitude location"
   },
-  assertions: {
-    uniqueKey: ["id"],
-    nonNull: ["name", "latitude","longitude"]
-  }
+  dependencies: ["assert_dc_id_nonnull", "assert_dc_uniquekey"]
 }
 select
   id,
-  nullif(trim(name),'') as name,
+  ${utils.null_if_string("name")} ,
   round(latitude,2) as latitude,
   round(longitude,2) as longitude
   from

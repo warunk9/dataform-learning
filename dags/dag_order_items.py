@@ -37,7 +37,7 @@ with models.DAG(
         "dataform_run_order_items",
         default_args = default_args, 
         schedule_interval = None,
-        tags = ['tag:test'],
+        tags = ['tag:fact'],
         catchup = False,
         render_template_as_native_obj=True
 

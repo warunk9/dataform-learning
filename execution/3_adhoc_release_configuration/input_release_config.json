@@ -1,0 +1,16 @@
+{
+    "gitCommitish": "development",
+    "codeCompilationConfig":{
+        "defaultDatabase": "gcp-sandbox-3-393305",
+        "defaultSchema": "df_ecom_bz",
+        "defaultLocation": "us-central1",
+        "assertionSchema": "df_ecom_assert",
+        "vars": {
+            "silverSchema": "df_ecom_sl",
+            "bronzeSchema": "df_ecom_bz",
+            "goldSchema": "df_ecom_gd"
+          }
+    },
+    "cronSchedule": "*/10 * * * *",
+    "timeZone": "Asia/Calcutta"
+}

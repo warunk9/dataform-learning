@@ -1,0 +1,10 @@
+{
+    "releaseConfig": "projects/gcp-sandbox-3-393305/locations/us-central1/repositories/dataform-learning-demo/releaseConfigs/dataform-learning-demo-rc1",
+    "invocationConfig": {
+        "includedTags": ["orders"],
+        "transitiveDependenciesIncluded": true,
+        "transitiveDependentsIncluded": true
+    },
+    "cronSchedule": "0 0 1 * *",
+    "timeZone": "Asia/Calcutta"
+}

@@ -1,0 +1,8 @@
+{
+    "invocationConfig": {
+        "includedTags": ["orders"],
+        "transitiveDependenciesIncluded": false,
+        "transitiveDependentsIncluded": false
+    },
+    "compilationResult": "projects/gcp-sandbox-3-393305/locations/us-central1/repositories/dataform-learning-demo/compilationResults/a4e86a5f-3b36-4376-9729-aac76e56bab5"
+}

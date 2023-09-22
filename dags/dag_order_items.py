@@ -25,7 +25,7 @@ from airflow.providers.google.cloud.utils.dataform import make_initialization_wo
 PROJECT_ID="gcp-sandbox-3-393305"
 REGION="us-central1"
 REPOSITORY_ID="dataform-learning-demo"
-WORKSPACE_ID="warun-ws"
+WORKSPACE_ID="paras-ws"
 
 default_args = {
     'start_date': datetime.datetime.strptime("2020-01-01 00:00:00", "%Y-%m-%d %H:%M:%S"),

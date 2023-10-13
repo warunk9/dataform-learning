@@ -1,0 +1,8 @@
+config {
+  type: "assertion",
+  tags: ["events" ,"silver"],
+  name: "assert_products_uniquekey"
+}
+select 
+id from ${ref("stg_products")}
+group by id having count(1) > 1

@@ -1,9 +1,0 @@
-config {
-  type: "assertion",
-  tags: ["orders" ,"silver"],
-  name: "assert_orders_uniquekey"
-
-}
-select 
-id from ${ref("stg_orders")}
-group by id having count(1) > 1

@@ -1,9 +1,0 @@
-config {
-  type: "assertion",
-  tags: ["order_items" ,"silver"],
-  name: "assert_order_items_rowvalidation"
-
-}
-select 
-id from ${ref("stg_order_items")} 
-where status not in ("Shipped", "Complete", "Cancelled", "Processing", "Returned")

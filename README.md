@@ -164,4 +164,72 @@ FROM FILES (
 );
 
 
+--stg_inventory_items.sqlx
+
+config {
+  type: "operations",  
+  hasOutput: true,  
+  schema: dataform.projectConfig.defaultSchema,
+  name: "stg_inventory_items",
+  tags: ["inventory_items" ,"bronze"]
+}
+LOAD DATA INTO ${ self() }
+(
+    id INTEGER NOT NULL OPTIONS (description = "Inventory Item Id"),
+    product_id INTEGER OPTIONS (description = "Product Id"),
+    created_at STRING OPTIONS (description = "Inventory Item Creation Timestamp"),
+    sold_at STRING OPTIONS (description = "Inventory Item Sold Timestamp"),
+    cost STRING OPTIONS (description = "Inventory Item Cost"),
+    product_category STRING OPTIONS (description = "Inventory Item Product Category"),
+    product_name STRING OPTIONS (description = "Inventory Item Product Name"),
+    product_brand STRING OPTIONS (description = "Inventory Item Product Brand"),
+    product_retail_price STRING OPTIONS (description = "Inventory Item Product Retail Price"),
+    product_department STRING OPTIONS (description = "Inventory Item Product Department"),
+    product_sku STRING OPTIONS (description = "Inventory Item Product SKU"),
+    product_distribution_ceter_id STRING OPTIONS (description = "Inventory Item Product Distribution Centre ID")
+)
+FROM FILES (
+  format = "CSV",
+  field_delimiter = ",",
+  skip_leading_rows = 1,
+  quote = "",
+  uris = ["gs://df_ecom_demo/raw_data/inventory_items/*"]
+)
+
+
+--dim_inventory_items.js
+
+publish("dim_inventory_items", {
+  type: "incremental",
+  schema: dataform.projectConfig.vars.silverSchema,
+  name: "dim_inventory_items",
+  tags: ["inventory_items" ,"silver"],
+  description: "Inventory Items Dimension Table",
+  columns: {
+      product_name: {
+        bigqueryPolicyTags: ["projects/gcp-sandbox-3-393305/locations/us-central1/taxonomies/6103638487414924910/policyTags/6256338910151106080"]
+      }
+    },
+  dependencies: ["assert_inventory_items_rowvalidations"],
+  bigquery: {
+     labels: {"type":"dimension"}
+  }
+}).query(ctx => `
+  SELECT id, 
+  product_id, 
+  ${utils.parse_date("created_at")} as created_at, 
+  ${utils.parse_date("sold_at")} as sold_at, 
+  CAST(cost as NUMERIC) as cost, 
+  product_category, 
+  product_name, 
+  product_brand, 
+  product_retail_price, 
+  product_department, 
+  product_sku, 
+  product_distribution_ceter_id FROM ${ctx.ref("stg_inventory_items")}
+  ${ctx.when(ctx.incremental(),`WHERE cast(substr(created_at, 1, 10) as date) > (SELECT IFNULL(MAX(EXTRACT(DATE FROM created_at)), CAST('${constants.DEFAULT_DATE}' as DATE)) FROM ${ctx.self()})`)}
+`)
+
+
+
 

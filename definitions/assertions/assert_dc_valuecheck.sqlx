@@ -1,0 +1,9 @@
+config {
+  type: "assertion",
+  tags: ["distribution_centre" ,"silver"],
+  name: "assert_dc_valuecheck"
+
+}
+select 
+id from ${ref("stg_distribution_centre")}
+where latitude > 40

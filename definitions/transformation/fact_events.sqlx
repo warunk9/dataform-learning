@@ -1,0 +1,42 @@
+config { 
+    type: "incremental",
+    schema: dataform.projectConfig.vars.silverSchema,
+    name: "fact_events",
+    tags: ["events" ,"silver"],
+    description: "Event Fact Table",
+    columns: {
+      ip_address: {
+        bigqueryPolicyTags: ["projects/gcp-sandbox-3-393305/locations/us-central1/taxonomies/6103638487414924910/policyTags/6256338910151106080"]
+      }
+    },
+    bigquery: {
+     labels: {"type":"fact"}
+  },
+    dependencies: ["assert_events_rowvalidation","assert_events_uniquekey"]
+ } 
+SELECT id,
+userid,
+sequence_number,
+session_id,
+${utils.parse_date("created_at")} as created_at,
+ip_address,
+city,
+state,
+postal_code,
+browser,
+traffic_source,
+uri,
+event_type FROM ${ref("stg_events")}
+
+${when(incremental(), `WHERE cast(substr(created_at, 1, 10) as date) > (SELECT IFNULL(MAX(EXTRACT(DATE FROM created_at)), CAST('${constants.DEFAULT_DATE}' as DATE)) FROM ${self()})`)}
+
+
+
+
+
+
+
+
+
+
+

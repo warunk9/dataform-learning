@@ -1,0 +1,8 @@
+config {
+  type: "assertion",
+  tags: ["longest_orders_delivery_time" ,"gold"],
+  name: "assert_longest_orders_delivery_time_uniquekey"
+}
+select 
+id from ${ref("fact_order_items")}
+group by id having count(1) > 1

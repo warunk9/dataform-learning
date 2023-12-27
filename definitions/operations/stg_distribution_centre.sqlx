@@ -1,0 +1,24 @@
+-- description not working
+
+config {
+  hasOutput: true,
+  type: "operations",
+  name: "stg_distribution_centre",
+  schema: dataform.projectConfig.vars.bronze_Schema,
+  description: "Distribution center name and location",
+  tags: ["distribution_centre" ,"bronze"]
+}
+LOAD DATA OVERWRITE ${ self() }
+(
+    id INTEGER NOT NULL,
+    name STRING,
+    latitude FLOAT64,
+    longitude FLOAT64,
+)
+FROM FILES (
+  format = "CSV",
+  field_delimiter = ",",
+  skip_leading_rows = 1,
+  quote = "",
+  uris = ["gs://df_ecom_demo/raw_data/distribution_centre/distribution_centers.csv"]
+);

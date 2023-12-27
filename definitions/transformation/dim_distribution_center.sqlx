@@ -1,0 +1,30 @@
+config {
+  type: "table",
+  schema: dataform.projectConfig.vars.silverSchema,
+  tags: ["distribution_centre" ,"silver"],
+  description: "Distribution center name and locations",
+  bigquery: {
+     labels: {"type":"dimension"}
+  },
+  columns: {
+    id: "unique key for Distribution center",
+    name: "name of Distribution center",
+    latitude: "latitude location",
+    longitude: "longitude location"
+  },
+  /*
+  assertions: {
+    uniqueKey: ["name"],
+    nonNull: ["latitude", "longitude"],
+  }
+  */
+  dependencies: ["assert_dc_uniquekey","assert_dc_valuecheck"]
+
+}
+select
+  id,
+  ${utils.null_if_string("name")} ,
+  round(latitude,2) as latitude,
+  round(longitude,2) as longitude
+  from
+  ${ref("stg_distribution_centre")}

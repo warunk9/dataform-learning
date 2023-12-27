@@ -1,0 +1,9 @@
+config {
+  type: "assertion",
+  tags: ["order_items" ,"silver"],
+  name: "assert_orders_rowvalidation"
+
+}
+select 
+order_id from ${ref("stg_orders")} 
+where created_at is not null and num_of_item > 0

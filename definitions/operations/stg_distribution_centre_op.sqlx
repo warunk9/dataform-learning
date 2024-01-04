@@ -3,10 +3,10 @@
 config {
   hasOutput: true,
   type: "operations",
-  name: "stg_distribution_centre",
+  name: "stg_distribution_centre_op",
   schema: dataform.projectConfig.vars.bronze_Schema,
   description: "Distribution center name and location",
-  tags: ["distribution_centre" ,"bronze"]
+  tags: ["distribution_centre_op" ,"bronze_op"]
 }
 LOAD DATA OVERWRITE ${ self() }
 (

@@ -7,7 +7,8 @@
   "vars": {
     "silverSchema": "df_ecom_sl",
     "bronzeSchema": "df_ecom_bz",
-    "goldSchema": "df_ecom_gd"
+    "goldSchema": "df_ecom_gd",
+    "myDatabase": "gcp-sandbox-3-393305"
   }
 }
     

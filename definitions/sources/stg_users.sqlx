@@ -1,0 +1,8 @@
+config {
+ type: "declaration",
+ database: dataform.projectConfig.vars.myDatabase,
+ schema: dataform.projectConfig.vars.bronzeSchema,
+ name: "stg_users",
+ description: "users details"
+}
+

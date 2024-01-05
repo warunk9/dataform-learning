@@ -1,7 +1,7 @@
 config {
  type: "declaration",
- database: constants.PROJECT_ID, 
- schema: dataform.projectConfig.vars.bronze_Schema,
+ database: dataform.projectConfig.vars.myDatabase, 
+ schema: dataform.projectConfig.vars.bronzeSchema,
  name: "stg_inventory_items",
  description: "inventory_items details"
 }

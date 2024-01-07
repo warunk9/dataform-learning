@@ -1,0 +1,23 @@
+config {
+   type: "view",
+   materialized: true,
+   name: "orders_count_by_gender",
+   tags: ["orders_count_by_gender"],
+   schema: dataform.projectConfig.vars.goldSchema,
+   tags: ["orders_count_by_gender" ,"gold"],
+   columns: {
+       gender: "gender male or female",
+       gender_count: "gender count"
+   },
+   bigquery: {
+       additionalOptions: {
+           refresh_interval_minutes: "10"
+       },
+       labels: {
+           "type": "reporting"
+       }
+   }
+}
+SELECT gender, count(*) as gender_count
+FROM ${ref("fact_orders")}
+group by gender

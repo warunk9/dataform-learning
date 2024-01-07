@@ -12,15 +12,24 @@ config {
     latitude: "latitude location",
     longitude: "longitude location"
   },
+<<<<<<< HEAD
  /* 
+=======
+/*
+>>>>>>> refs/heads/development
   assertions: {
     uniqueKey: ["name"],
     nonNull: ["latitude", "longitude"],
   }
 */  
+<<<<<<< HEAD
 /*
   dependencies: ["assert_dc_uniquekey","assert_dc_valuecheck"]
 */
+=======
+/* dependencies: ["assert_dc_uniquekey","assert_dc_valuecheck"] */
+
+>>>>>>> refs/heads/development
 }
 select
   id,

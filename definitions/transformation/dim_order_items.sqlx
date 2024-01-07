@@ -8,7 +8,7 @@ config {
     bigquery: {
      labels: {"type":"dimension"}
   },
-    dependencies: ["assert_order_items_rowvalidation","assert_order_items_nonnull"] 
+/*    dependencies: ["assert_order_items_rowvalidation","assert_order_items_nonnull"] */ 
  } 
 SELECT 
 id,

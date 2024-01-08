@@ -1,0 +1,27 @@
+config {
+  type: "view",
+  materialized: true,
+  name: "mv_longest_orders_delivery_time",
+  schema: dataform.projectConfig.vars.goldSchema,
+  tags: ["longest_orders_delivery_time" ,"gold"],
+  description: "longest time taken for orders to be delievered",
+  bigquery: {
+       additionalOptions: {
+           refresh_interval_minutes: "30"
+       },
+       labels: {
+           "type": "reporting"
+       }
+   },
+  dependencies: ["assert_longest_orders_delivery_time_uniquekey"]
+}
+SELECT
+order_id,
+shipped_at,
+delivered_at,
+date_diff(delivered_at,shipped_at , DAY) AS days_to_deliver
+FROM
+${ref("fact_order_items")} 
+where status='Complete'
+--materialized view does not support sorting
+--order by date_diff(delivered_at,shipped_at , DAY) desc

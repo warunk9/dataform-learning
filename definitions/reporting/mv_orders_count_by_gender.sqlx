@@ -5,10 +5,6 @@ config {
    tags: ["orders_count_by_gender"],
    schema: dataform.projectConfig.vars.goldSchema,
    tags: ["orders_count_by_gender" ,"gold"],
-   columns: {
-       gender: "gender male or female",
-       gender_count: "gender count"
-   },
    bigquery: {
        additionalOptions: {
            refresh_interval_minutes: "10"

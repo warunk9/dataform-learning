@@ -1,11 +1,10 @@
--- description not working
+-- calling an stored proc for backup of table
 
 config {
-  hasOutput: true,
   type: "operations",
   name: "backup_stg_distribution_centre_proc",
-  schema: dataform.projectConfig.vars.bronze_Schema,
+  schema: dataform.projectConfig.vars.bronzeSchema,
   description: "Distribution center name and location",
   tags: ["distribution_centre" ,"bronze"]
 }
-CALL `gcp-sandbox-3-393305.df_ecom_bz.sp_backup_table`('stg_distribution_centre');
+CALL `${dataform.projectConfig.vars.myDatabase}.${dataform.projectConfig.vars.bronzeSchema}.sp_backup_table`('stg_distribution_centre_op');

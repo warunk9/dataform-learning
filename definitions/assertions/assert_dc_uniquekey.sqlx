@@ -6,4 +6,4 @@ config {
 }
 select 
 id from ${ref("stg_distribution_centre")}
-group by id having count(1) > 1
+group by id having count(*) > 1

@@ -1,0 +1,9 @@
+config {
+  hasOutput: true,
+  type: "operations",
+  name: "test_view_op",
+  schema: dataform.projectConfig.vars.bronze_Schema,
+  description: "Create test view"
+}
+CREATE OR REPLACE VIEW `${dataform.projectConfig.vars.myDatabase}.${dataform.projectConfig.vars.bronzeSchema}.test_view_op`
+AS (SELECT 1 AS TEST);

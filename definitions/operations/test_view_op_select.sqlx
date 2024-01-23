@@ -1,0 +1,7 @@
+config {
+  type: "operations",
+  name: "test_view_op_select",
+  schema: dataform.projectConfig.vars.bronze_Schema,
+  description: "Select from test view",
+}
+SELECT * FROM ${ref("test_view_op")};
